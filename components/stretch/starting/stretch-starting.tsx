@@ -1,56 +1,24 @@
 "use client"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { FC, useEffect, useState } from "react"
-import stretchExercises from "./data";
+import { FC, useState } from "react"
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import Timer from "@/components/stretch/starting/timer";
+import stretchExercises from "@/components/stretch/starting/data";
 
 const StretchStarting: FC = () => {
     const [currentExercise, setCurrentExercise] = useState(0);
     const [currentRepetition, setCurrentRepetition] = useState(0);
-    const [isPaused, setIsPaused] = useState(true);
-    const [minutes, setMinutes] = useState(0);
-    const [seconds, setSeconds] = useState(0);
-
-    useEffect(() => {
-        const exerciseCount = stretchExercises[currentExercise].repetitions[currentRepetition].count;
-        setMinutes(Math.floor(exerciseCount / 60));
-        setSeconds(exerciseCount % 60);
-    }, [currentExercise, currentRepetition]);
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            if (!isPaused) {
-                if (seconds === 0) {
-                    if (minutes === 0) {
-                        changeRepetition(currentRepetition + 1);
-                        return;
-                    }
-                    setMinutes(minutes - 1);
-                    setSeconds(59);
-                } else {
-                    setSeconds(seconds - 1);
-                }
-            }
-        }, 1000);
-
-        return () => {
-            clearInterval(timer);
-        };
-    }, [isPaused, minutes, seconds]);
 
     const changeExercise = (index: number) => {
         setCurrentExercise(index);
-        setIsPaused(true);
+        setCurrentRepetition(0);
     };
 
     const changeRepetition = (index: number) => {
-        setIsPaused(true);
-
         if (index >= stretchExercises[currentExercise].repetitions.length) {
             changeExercise(currentExercise + 1);
-            return;
         } else {
             setCurrentRepetition(index);
         }
@@ -70,9 +38,9 @@ const StretchStarting: FC = () => {
                         >
                             <ArrowLeft />
                         </Button>
-                        <p>
+                        <span>
                             {stretchExercises[currentExercise].name}
-                        </p>
+                        </span>
                         <Button 
                             size="icon" 
                             onClick={() => changeExercise(currentExercise + 1)}
@@ -83,34 +51,18 @@ const StretchStarting: FC = () => {
                     </div>
                 </CardTitle>
                 <CardDescription>
-                    <p>
-                        {currentExercise + 1} of {stretchExercises.length}
-                    </p>
+                    {currentExercise + 1} of {stretchExercises.length}
                 </CardDescription>
             </CardHeader>
             <CardContent className="flex justify-center gap-4">
                 <div className="flex flex-col items-center gap-8">
                     <div className="flex flex-col items-center gap-2">
-                        <div className="flex items-center gap-8">
-                            <div className="text-6xl font-bold">
-                                {minutes < 10 ? `0${minutes}` : minutes}:{seconds < 10 ? `0${seconds}` : seconds}
-                            </div>
-                            <div className="flex gap-4">
-                                <Button onClick={() => setIsPaused(!isPaused)}>
-                                    {isPaused ? (
-                                        <>
-                                            <Play className="h-5 w-5" />
-                                            <span className="sr-only">Play</span>
-                                        </>
-                                    ) : (
-                                        <>
-                                            <Pause className="h-5 w-5" />
-                                            <span className="sr-only">Pause</span>
-                                        </>
-                                    )}
-                                </Button>
-                            </div>
-                        </div>
+                        <Timer 
+                            repetition={stretchExercises[currentExercise].repetitions[currentRepetition]} 
+                            onTimerEnd={() => changeRepetition(currentRepetition + 1)}
+                            autoplay={currentRepetition !== 0}
+                        />
+
                         <div>
                             {stretchExercises[currentExercise].repetitions[currentRepetition].text}
                         </div>
