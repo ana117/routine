@@ -1,14 +1,15 @@
 import { RepetitionType, StretchExercise } from "@/models/stretch";
 
-
-const defaultRepetitions = [
-    { type: RepetitionType.Bump, count: 10, text: 'Small gentle bumping movements into the stretch' },
-    { type: RepetitionType.Hold, count: 10, text: 'Hold the stretch' },
-    { type: RepetitionType.Bump, count: 10, text: 'Small gentle bumping movements into the stretch' },
-    { type: RepetitionType.Hold, count: 20, text: 'Hold the stretch' },
-    { type: RepetitionType.Bump, count: 10, text: 'Small gentle bumping movements into the stretch' },
-    { type: RepetitionType.Hold, count: 30, text: 'Hold the stretch' },
-];
+const generateDefaultRepetitions = () => {
+    return [
+        { type: RepetitionType.Bump, count: 10, text: 'Small gentle bumping movements into the stretch' },
+        { type: RepetitionType.Hold, count: 10, text: 'Hold the stretch' },
+        { type: RepetitionType.Bump, count: 10, text: 'Small gentle bumping movements into the stretch' },
+        { type: RepetitionType.Hold, count: 20, text: 'Hold the stretch' },
+        { type: RepetitionType.Bump, count: 10, text: 'Small gentle bumping movements into the stretch' },
+        { type: RepetitionType.Hold, count: 30, text: 'Hold the stretch' },
+    ];
+}
 
 const stretchExercises: StretchExercise[] = [
     { 
@@ -20,7 +21,7 @@ const stretchExercises: StretchExercise[] = [
             'Interlace your fingers behind your back, with your palms facing inward.',
             'Slowly lift your arms up and away from your body, keeping your shoulders relaxed and your chest open.',
         ],
-        repetitions: defaultRepetitions,
+        repetitions: generateDefaultRepetitions(),
      },
      {
         id: 'spine-backbend',
@@ -30,7 +31,7 @@ const stretchExercises: StretchExercise[] = [
             'Place your fingertips on you shoulder blades, with your elbows pointing forward.',
             'Lean back slightly while keeping your head neutral.',
         ],
-        repetitions: defaultRepetitions,
+        repetitions: generateDefaultRepetitions(),
      },
      {
         id: 'rear-hand-clasp',
@@ -42,7 +43,7 @@ const stretchExercises: StretchExercise[] = [
             'Gently pull with the hand behind your back/head.',
             'Switch hands and repeat.',
         ],
-        repetitions: defaultRepetitions,
+        repetitions: generateDefaultRepetitions(),
      },
      {
         id: 'lying-cross',
@@ -65,7 +66,7 @@ const stretchExercises: StretchExercise[] = [
             'Place your arm straight on the wall with your palm facing the wall.',
             'While keeping your arm straight, rotate your upper body away from the wall.',
         ],
-        repetitions: defaultRepetitions,
+        repetitions: generateDefaultRepetitions(),
      }
 ];
 
