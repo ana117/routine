@@ -1,20 +1,5 @@
-enum RepetitionType {
-    Bump = 'bump',
-    Hold = 'hold',
-}
+import { RepetitionType, StretchExercise } from "@/models/stretch";
 
-interface Repetition {
-    type: RepetitionType;
-    count: number;
-    text: string;
-}
-
-export interface StretchExercise {
-    id: string;
-    name: string;
-    steps: string[];
-    repetitions: Repetition[];
-}
 
 const defaultRepetitions = [
     { type: RepetitionType.Bump, count: 10, text: 'Small gentle bumping movements into the stretch' },
