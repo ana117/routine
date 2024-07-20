@@ -18,7 +18,7 @@ const Home: FC = () => {
               <p>
                 Full-body program for beginners from r/flexibility
               </p>
-              <div className="flex justify-between gap-2">
+              <div className="flex flex-col lg:flex-row justify-between gap-2">
                 <div>
                   <p>Upper Body</p>
                   <ul className="list-disc list-inside">

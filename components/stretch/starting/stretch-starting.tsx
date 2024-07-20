@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { FC, useState } from "react"
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -28,12 +28,12 @@ const StretchStarting: FC = () => {
     return (
       <div className="grow p-8 flex flex-col gap-16">
         <Card className="h-fit w-full bg-secondary">
-            <CardContent className="flex justify-center gap-4 mt-8">
-                <div className="flex flex-col items-center justify-center gap-8 w-1/3">
+            <CardContent className="flex flex-col lg:flex-row justify-center gap-8 lg:gap-4 mt-8">
+                <div className="flex flex-col items-center justify-center gap-4 lg:gap-8 lg:w-1/3">
                     <h1 className="text-4xl font-bold text-center">
                         {stretchExercises[currentExercise].name}
                     </h1>
-                    <div className="flex items-center justify-between gap-8">
+                    <div className="flex items-center justify-between gap-8 z-0">
                         <Button 
                             size="icon" 
                             onClick={() => changeExercise(currentExercise - 1)}
@@ -43,7 +43,6 @@ const StretchStarting: FC = () => {
                         </Button>
                         <span>
                             {currentExercise + 1} of {stretchExercises.length}
-
                         </span>
                         <Button 
                             size="icon" 
@@ -63,7 +62,7 @@ const StretchStarting: FC = () => {
                             autoplay={currentRepetition !== 0}
                         />
 
-                        <div>
+                        <div className="text-center">
                             {stretchExercises[currentExercise].repetitions[currentRepetition].text}
                         </div>
                     </div>
@@ -87,7 +86,7 @@ const StretchStarting: FC = () => {
                 Starting to Stretch
                 </CardTitle>
             </CardHeader>
-            <CardContent className="flex justify-between gap-8">
+            <CardContent className="flex flex-col lg:flex-row justify-between gap-8">
                 <div className="flex flex-col gap-2">
                     <p>
                         Do this program 2-3 times a week! It will take ~30 minutes. If you have time issues, you can switch between upper and lower body.
