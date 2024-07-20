@@ -28,9 +28,12 @@ const StretchStarting: FC = () => {
     return (
       <div className="grow p-8 flex flex-col gap-16">
         <Card className="h-fit w-full bg-secondary">
-            <CardHeader className="flex items-center">
-                <CardTitle>
-                    <div className="flex items-center justify-between gap-8 min-w-96">
+            <CardContent className="flex justify-center gap-4 mt-8">
+                <div className="flex flex-col items-center justify-center gap-8 w-1/3">
+                    <h1 className="text-4xl font-bold text-center">
+                        {stretchExercises[currentExercise].name}
+                    </h1>
+                    <div className="flex items-center justify-between gap-8">
                         <Button 
                             size="icon" 
                             onClick={() => changeExercise(currentExercise - 1)}
@@ -39,7 +42,8 @@ const StretchStarting: FC = () => {
                             <ArrowLeft />
                         </Button>
                         <span>
-                            {stretchExercises[currentExercise].name}
+                            {currentExercise + 1} of {stretchExercises.length}
+
                         </span>
                         <Button 
                             size="icon" 
@@ -49,13 +53,9 @@ const StretchStarting: FC = () => {
                             <ArrowRight />
                         </Button>
                     </div>
-                </CardTitle>
-                <CardDescription>
-                    {currentExercise + 1} of {stretchExercises.length}
-                </CardDescription>
-            </CardHeader>
-            <CardContent className="flex justify-center gap-4">
-                <div className="flex flex-col items-center gap-8">
+                </div>
+
+                <div className="flex flex-col items-center gap-8 grow">
                     <div className="flex flex-col items-center gap-2">
                         <Timer 
                             repetition={stretchExercises[currentExercise].repetitions[currentRepetition]} 
