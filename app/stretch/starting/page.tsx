@@ -5,3 +5,8 @@ export default function StretchStartingPage() {
     <StretchStarting />
   )
 }
+
+export const metadata = {
+  title: 'Starting to Stretch',
+  description: 'Stretching exercises for beginners taken from r/flexibility.',
+};
